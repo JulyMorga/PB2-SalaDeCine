@@ -82,7 +82,7 @@ public class Main {
                     liberarAsiento();
                     break;
                 case 4:
-                    sala.mostrarButacas();
+                    mostrarButacas(sala);
                     break;
                 case 5:
                     mostrarInfoPelicula();
@@ -219,6 +219,31 @@ public class Main {
         } else {
             System.out.println("❌ Operación cancelada.");
         }
+    }
+    
+    public void mostrarButacas(SalaCine sala) {
+    	Asiento[][] butacas = sala.getButacas();
+    	
+    	System.out.println("\n=== ESTADO DE LA SALA ===");
+        if (sala.peliculaEnCartelera != null) {
+            System.out.println("🎬 Película: " + sala.getTitulo());
+        }
+        System.out.println("📊 Ocupación: " + sala.contarAsientosOcupados() + "/" + sala.getTotalAsientos() + " asientos");
+        System.out.print("   ");
+        for (int j = 0; j < butacas[0].length; j++) {
+            System.out.printf("%3d", j);
+        }
+        System.out.println();
+        
+        for (int i = 0; i < butacas.length; i++) {
+            System.out.printf("%2d ", i);
+            for (int j = 0; j < butacas[i].length; j++) {
+                char estado = butacas[i][j].estaOcupado() ? 'X' : 'O';
+                System.out.printf("%3c", estado);
+            }
+            System.out.println();
+        }
+        System.out.println("O = Libre, X = Ocupado\n");
     }
 }
 

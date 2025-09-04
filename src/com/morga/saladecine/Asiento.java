@@ -4,6 +4,10 @@ public class Asiento {
 	private String nombreComprador;
 	private boolean ocupado;
 		
+	public Asiento() {
+		this.liberar();
+	}
+	
 	public Asiento(String nombreComprador, boolean estado) {
 		this.nombreComprador = nombreComprador;
 		this.ocupado = estado;
