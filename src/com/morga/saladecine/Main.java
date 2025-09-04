@@ -127,7 +127,7 @@ public class Main {
         
         if (opcion >= 1 && opcion <= 10) {
             Pelicula peliculaSeleccionada = peliculas[opcion - 1];
-            sala.cambiarPelicula(peliculaSeleccionada);
+            cambiarPelicula(peliculaSeleccionada);
             peliculaSeleccionada.mostrarSinopsis();
         } else if (opcion == 11) {
             if (sala.getPeliculaActual() != null) {
@@ -245,5 +245,12 @@ public class Main {
         }
         System.out.println("O = Libre, X = Ocupado\n");
     }
+  
+    public void cambiarPelicula(Pelicula nuevaPelicula) {
+    	sala.cambiarPelicula(nuevaPelicula);
+    	System.out.println("Pelicula cambiada a: " + nuevaPelicula.getTitulo());
+    }
+    
+    
 }
 
