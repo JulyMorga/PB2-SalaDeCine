@@ -60,4 +60,19 @@ public class SalaCine {
 		return true;
 	}
 	
+	public String getTitulo() {
+		return pelicula.getTitulo();
+	}
+	
+	
+	public boolean liberarAsiento(int fila, int columna){
+		if(fila < 0 || columna < 0)
+			return false;
+		
+		if(fila <= butacas.length && columna <= butacas[0].length ) {
+			butacas[fila][columna].liberar();
+			return true;
+		}
+		return false;		
+	}
 }

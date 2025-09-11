@@ -45,8 +45,6 @@ public class SalaCineTest {
 		boolean venta2 = sala1.venderBoleto(0, 2, 16, "Julian Morga");
 		assertTrue(venta1);
 		assertTrue(venta2);
-		
-		
 	}
 	
 	
@@ -87,6 +85,33 @@ public class SalaCineTest {
 		sala1.venderBoleto(0, 2, 18, "Julian Morga");
 		sala1.venderBoleto(1, 2, 18, "Julian Morga");
 		
+		assertEquals(3, sala1.contarAsientosOcupados());
+	}
+	
+	@Test
+	void liberarAsientoVendido() {
+		sala1.cambiarPelicula(peliculas[0]);
+		sala1.venderBoleto(0, 1, 18, "Julian Morga");
+		sala1.venderBoleto(0, 2, 18, "Julian Morga");
+		sala1.venderBoleto(1, 2, 18, "Julian Morga");
+		
+		assertEquals(3, sala1.contarAsientosOcupados());
+		assertTrue(sala1.liberarAsiento(0, 1));
+		assertEquals(2, sala1.contarAsientosOcupados());
+		sala1.venderBoleto(0, 1, 18, "Julian Morga");
+		assertEquals(3, sala1.contarAsientosOcupados());
+	}
+	
+	@Test
+	void liberarAsientoVendidoFueraDeRangoTest() {
+		sala1.cambiarPelicula(peliculas[0]);
+		sala1.venderBoleto(0, 1, 18, "Julian Morga");
+		sala1.venderBoleto(0, 2, 18, "Julian Morga");
+		sala1.venderBoleto(1, 2, 18, "Julian Morga");
+		
+		assertEquals(3, sala1.contarAsientosOcupados());
+		assertFalse(sala1.liberarAsiento(5, 10));
+		assertFalse(sala1.liberarAsiento(-1, -1));
 		assertEquals(3, sala1.contarAsientosOcupados());
 	}
 	
