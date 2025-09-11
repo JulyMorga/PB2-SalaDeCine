@@ -1,9 +1,11 @@
 package com.morga.saladecine;
 
+import java.util.Objects;
+
 public abstract class Pelicula {
-	 String titulo;
-	 int duracion; 
-	 int edadMinima;
+	 protected String titulo;
+	 protected int duracion; 
+	 protected int edadMinima;
 	 
 	public Pelicula(String titulo, int duracion, int edadMinima) {
 		super();
@@ -12,7 +14,7 @@ public abstract class Pelicula {
 		this.edadMinima = edadMinima;
 	}
 	
-	public abstract void mostrarSinopsis();
+	public abstract String mostrarSinopsis();
 
 	public String getTitulo() {
 		return titulo;
@@ -25,5 +27,19 @@ public abstract class Pelicula {
 	public int getEdadMinima() {
 		return edadMinima;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		Pelicula other = (Pelicula) obj;
+		return duracion == other.duracion && edadMinima == other.edadMinima && Objects.equals(titulo, other.titulo);
+	}
+	
+	
 	
 }

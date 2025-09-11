@@ -1,7 +1,5 @@
 package com.morga.saladecine;
 
-import java.util.Iterator;
-
 public class SalaCine {
 	private Asiento[][] butacas;
 	private Pelicula pelicula;
@@ -36,6 +34,30 @@ public class SalaCine {
 	
 	public int getTotalAsientos() {
 		return butacas.length * butacas[0].length;
+	}
+
+	public void cambiarPelicula(Pelicula pelicula) {
+		this.pelicula = pelicula;
+	}
+
+	public Pelicula getPeliculaActual() {
+		return pelicula;
+	}
+	
+	public boolean venderBoleto(int fila, int columna, int edad, String nombreComprador) {
+		
+		if(butacas[fila][columna].estaOcupado())
+			return false;
+		
+		if(this.pelicula.getEdadMinima() > edad)
+			return false;
+		
+		if(nombreComprador == null)
+			return false;
+		
+		
+		butacas[fila][columna].ocupar(nombreComprador);
+		return true;
 	}
 	
 }
